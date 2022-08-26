@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     );
 })
  
-router.post('/notifications ', (req, res) => {
+router.post('/notifications', (req, res) => {
   console.log(req.body) // print all response
 
   //messageFrom=req.body['data']['from'] // sender number
