@@ -18,4 +18,12 @@ router.post('/notifications', (req, res) => {
   res.status(200).end()
 })
 
+router.get('/notifications', (req, res) => {
+    console.log(req.body) // print all response
+  
+    //messageFrom=req.body['data']['from'] // sender number
+    //messageMsg=req.body['data']['body'] // Message text
+    res.status(200).end()
+  })
+
 module.exports = router;
