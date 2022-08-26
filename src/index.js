@@ -15,6 +15,11 @@ app.post("/webhook", function (request, response) {
   response.sendStatus(200);
 });
 
+app.get("/webhook", function (request, response) {
+  console.log('Incoming webhook: ' + JSON.stringify(request.body));
+  response.sendStatus(200);
+});
+
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
