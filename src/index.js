@@ -1,12 +1,34 @@
-const express = require('express');
-const app = express();
-const morgan=require('morgan');
-const bodyParser = require('body-parser')
+var express = require('express')
+  , bodyParser = require('body-parser');
+
+var app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 
-//Configuraciones
-app.set('port', process.env.PORT || 3000);
-app.set('json spaces', 2)
+app.get("/", function (request, response) {
+  response.send('Simple WhatsApp Webhook tester</br>There is no front-end, see server.js for implementation!');
+});
+
+app.post("/webhook", function (request, response) {
+  console.log('Incoming webhook: ' + JSON.stringify(request.body));
+  response.sendStatus(200);
+});
+
+var listener = app.listen(process.env.PORT, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
+
+// const express = require('express');
+// const app = express();
+// const morgan=require('morgan');
+// const bodyParser = require('body-parser')
+// app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.json())
+
+// //Configuraciones
+// app.set('port', process.env.PORT || 3000);
+// app.set('json spaces', 2)
 
 // app.get('/', (req, res) => {    
 //   res.json(
@@ -17,12 +39,12 @@ app.set('json spaces', 2)
 // })
 
 //Routes
-app.use(require('./routes/index'));
+// app.use(require('./routes/index'));
 
-//Iniciando el servidor, escuchando...
-app.listen(app.get('port'),()=>{
-  console.log(`Server listening on port ${app.get('port')}`);
-});
+// //Iniciando el servidor, escuchando...
+// app.listen(app.get('port'),()=>{
+//   console.log(`Server listening on port ${app.get('port')}`);
+// });
 
 // const express = require('express')
 // const bodyParser = require('body-parser')
